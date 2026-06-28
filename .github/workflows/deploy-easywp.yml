@@ -19,18 +19,16 @@ jobs:
           SFTP_SERVER: ${{ secrets.SFTP_SERVER }}
           SFTP_USERNAME: ${{ secrets.SFTP_USERNAME }}
           SFTP_PASSWORD: ${{ secrets.SFTP_PASSWORD }}
-          SFTP_PORT: ${{ secrets.SFTP_PORT }}
         run: |
           missing=0
           [ -z "$SFTP_SERVER" ] && echo "::error::Secret SFTP_SERVER is missing or empty" && missing=1
           [ -z "$SFTP_USERNAME" ] && echo "::error::Secret SFTP_USERNAME is missing or empty" && missing=1
           [ -z "$SFTP_PASSWORD" ] && echo "::error::Secret SFTP_PASSWORD is missing or empty" && missing=1
-          [ -z "$SFTP_PORT" ] && echo "::error::Secret SFTP_PORT is missing or empty" && missing=1
           if [ "$missing" -eq 1 ]; then
             echo "Add secrets at: Settings → Secrets and variables → Actions → Repository secrets"
             exit 1
           fi
-          echo "All 4 SFTP secrets are set."
+          echo "All required SFTP secrets are set."
 
       - name: Deploy to Namecheap EasyWP (SFTP)
         uses: SamKirkland/FTP-Deploy-Action@v4.3.5
@@ -38,7 +36,7 @@ jobs:
           server: ${{ secrets.SFTP_SERVER }}
           username: ${{ secrets.SFTP_USERNAME }}
           password: ${{ secrets.SFTP_PASSWORD }}
-          port: ${{ secrets.SFTP_PORT }}
+          port: "22"
           protocol: sftp
           local-dir: ./
           server-dir: /wptbox/
