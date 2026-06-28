@@ -35,6 +35,7 @@ jobs:
         run: |
           tar --exclude='.git' \
               --exclude='.github' \
+              --exclude='deploy.tar.gz' \
               --exclude='wp-config.php' \
               --exclude='wp-config-sample.php' \
               --exclude='wp-content/uploads' \
@@ -43,12 +44,12 @@ jobs:
               --exclude='*.wpress' \
               --exclude='ai1wm-restore.php' \
               --exclude='object-cache.php.disabled' \
-              -czf /tmp/deploy.tar.gz -C "$GITHUB_WORKSPACE" .
-          ls -lh /tmp/deploy.tar.gz
+              -czf "$GITHUB_WORKSPACE/deploy.tar.gz" -C "$GITHUB_WORKSPACE" .
+          ls -lh "$GITHUB_WORKSPACE/deploy.tar.gz"
 
       - name: Verify deploy archive size
         run: |
-          SIZE=$(stat -c%s /tmp/deploy.tar.gz)
+          SIZE=$(stat -c%s "$GITHUB_WORKSPACE/deploy.tar.gz")
           echo "Archive size: $SIZE bytes"
           if [ "$SIZE" -lt 1000000 ]; then
             echo "::error::Deploy archive is too small. Expected at least 1 MB."
@@ -62,7 +63,7 @@ jobs:
           username: ${{ secrets.SFTP_USERNAME }}
           password: ${{ secrets.SFTP_PASSWORD }}
           port: 22
-          source: /tmp/deploy.tar.gz
+          source: deploy.tar.gz
           target: /wptbox/
 
       - name: Extract archive on server
