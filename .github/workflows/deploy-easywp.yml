@@ -9,7 +9,7 @@ on:
 jobs:
   deploy:
     runs-on: ubuntu-latest
-    timeout-minutes: 90
+    timeout-minutes: 30
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
@@ -42,11 +42,11 @@ jobs:
           set sftp:connect-program "ssh -a -x -o StrictHostKeyChecking=no"
           set net:timeout 120
           pwd
-          ls
+          ls wp-content/themes
           quit
           EOF
 
-      - name: Deploy to EasyWP via SFTP mirror
+      - name: Deploy child theme to EasyWP
         env:
           SFTP_SERVER: ${{ secrets.SFTP_SERVER }}
           SFTP_USERNAME: ${{ secrets.SFTP_USERNAME }}
@@ -57,20 +57,9 @@ jobs:
           set net:timeout 120
           set net:max-retries 3
           mirror -R \
-            --exclude .git/ \
-            --exclude .github/ \
-            --exclude wp-config.php \
-            --exclude wp-config-sample.php \
-            --exclude wp-content/uploads/ \
-            --exclude wp-content/ai1wm-backups/ \
-            --exclude wp-content/mu-plugins/ \
-            --exclude-glob *.wpress \
-            --exclude ai1wm-restore.php \
-            --exclude deploy.tar.gz \
-            --exclude docs/credentials.txt \
-            --exclude object-cache.php.disabled \
+            --no-perms \
+            --no-umask \
             --verbose \
-            --parallel=5 \
-            ./ /
+            wp-content/themes/hello-elementor-child wp-content/themes/hello-elementor-child
           quit
           EOF
