@@ -1,0 +1,11 @@
+DO NOT use "Import" upload in WordPress admin for large files.
+
+Instead:
+1. Copy your full .wpress file HERE (should be ~366 MB, not 11 MB)
+2. Restart Apache in XAMPP
+3. Run from command line:
+   cd c:\xampp\htdocs\leatherisem
+   c:\xampp\php\php.exe ai1wm-restore.php
+
+Or open in browser (logged in as admin):
+   http://localhost/leatherisem/ai1wm-restore.php

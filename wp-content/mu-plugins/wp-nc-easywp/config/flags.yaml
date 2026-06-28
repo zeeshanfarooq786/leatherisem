@@ -1,0 +1,43 @@
+# Easywp plugin feature flags file
+# This file is used to enable or disable features of the Easywp plugin
+# The file is in YAML format
+# You can find more information about YAML here: https://yaml.org/
+#
+# The version of the file is 1.0.0
+version: "1.0.0"
+#
+# The following settings are used for the HackGuardian feature
+# The HackGuardian feature is a security feature that enables or disables the write access to the WordPress files
+hackguardian:
+  # Enable or disable the HackGuardian feature
+  enabled: true
+  # Request timeout
+  timeout: 0
+  # API route
+  route: "/v1/readonly"
+  #
+  # The following settings are used for the Monarx feature
+  #
+monarx:
+  # Enable or disable the Monarx feature
+  enabled: true
+  # Throttle request time in minutes
+  # By setting this value to 0, the feature will be disabled
+  throttle: 5
+  # Request timeout
+  timeout: 0
+  # API route
+  route: "/v1/sequoia-app-webhook/api/v1alpha1/notifications"
+  #
+  # The following settings are used for the Auto Updates feature
+  #
+autoupdates:
+  cache:
+    url: "http://sequoia-integration-public.sequoia-integration.svc.cluster.local:8080/api"
+    route: "/v1alpha1/cache"
+    timeout: 0
+  sync:
+    # Enable or disable the Schedule cron for Auto sync
+    enabled: true
+    # Recurrence time 'hourly' | 'twicedaily' | 'daily' | 'weekly'
+    recurrence: hourly

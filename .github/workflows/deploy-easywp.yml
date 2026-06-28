@@ -1,0 +1,34 @@
+name: Deploy to EasyWP
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Deploy to Namecheap EasyWP (SFTP)
+        uses: SamKirkland/FTP-Deploy-Action@v4.3.5
+        with:
+          server: ${{ secrets.SFTP_SERVER }}
+          username: ${{ secrets.SFTP_USERNAME }}
+          password: ${{ secrets.SFTP_PASSWORD }}
+          port: ${{ secrets.SFTP_PORT }}
+          protocol: sftp
+          local-dir: ./
+          server-dir: /wptbox/
+          exclude: |
+            **/.git*
+            **/.github/**
+            **/wp-config.php
+            **/wp-config-sample.php
+            **/wp-content/uploads/**
+            **/wp-content/ai1wm-backups/**
+            **/*.wpress
+            ai1wm-restore.php
+            **/object-cache.php.disabled

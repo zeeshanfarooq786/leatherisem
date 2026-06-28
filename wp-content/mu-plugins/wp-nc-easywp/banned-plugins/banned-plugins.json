@@ -1,0 +1,82 @@
+{
+  "plugins": [
+    {
+      "accesspress-social-pro/accesspress-social-pro.php": {
+        "reason": "EasyWP notice: this plugin slows down WordPress",
+        "description": ""
+      },
+      "ad-blocking-detector/ad-blocking-detector.php": {
+        "reason": "EasyWP notice: this plugin causes unnecessary load on database.",
+        "description": ""
+      },
+      "auto-upload-images/index.php": {
+        "reason": "EasyWP notice: this plugin has security issues.",
+        "description": ""
+      },
+      "contextual-related-posts/contextual-related-posts.php": {
+        "reason": "EasyWP notice: this plugin causes unnecessary load on database.",
+        "description": ""
+      },
+      "currencyr/currencyr.php": {
+        "reason": "EasyWP notice: this plugin interferes with our caching mechanism.",
+        "description": ""
+      },
+      "custom-field-template/custom-field-template.php": {
+        "reason": "EasyWP notice: this plugin slows down WordPress.",
+        "description": ""
+      },
+      "media-deduper-pro/media-deduper-pro.php": {
+        "reason": "EasyWP notice: this plugin causes unnecessary load on database.",
+        "description": ""
+      },
+      "similar-posts/similar-posts.php": {
+        "reason": "EasyWP notice: this plugin causes unnecessary load on database.",
+        "description": ""
+      },
+      "ultimate-social-deux/ultimate-social-deux.php": {
+        "reason": "EasyWP notice: this plugin slows down WordPress.",
+        "description": ""
+      },
+      "wordpress-database-reset/wp-reset.php": {
+        "reason": "EasyWP notice: this plugin has security issues.",
+        "description": ""
+      },
+      "wordpress-popular-posts/wordpress-popular-posts.php": {
+        "reason": "EasyWP notice: this plugin causes unnecessary load on database.",
+        "description": ""
+      },
+      "wp-memcached-manager/wp-memcached-manager.php": {
+        "reason": "EasyWP notice: This plugin is not necessary since EasyWP already has its own cache.",
+        "description": ""
+      },
+      "wp-tab-widget/wp-tab-widget.php": {
+        "reason": "EasyWP notice: this plugin causes unnecessary load on database.",
+        "description": ""
+      },
+      "redis-cache/redis-cache.php": {
+        "reason": "EasyWP notice: This plugin is not necessary since EasyWP already has its own cache.",
+        "description": ""
+      },
+      "simple-session-support/simple-session-support.php": {
+        "reason": "EasyWP notice: This plugin is outdated.",
+        "description": ""
+      },
+      "wp-stats-manager/wp-stats-manager.php": {
+        "reason": "EasyWP notice: this plugin causes unnecessary load on database.",
+        "description": ""
+      },
+      "everest-backup/everest-backup.php": {
+        "reason": "EasyWP notice: this plugin causes unnecessary load on filesystem.",
+        "description": ""
+      },
+      "wp-optimizer/wp-optimizer.php": {
+        "reason": "EasyWP notice: this plugin causes unnecessary load on filesystem.",
+        "description": ""
+      },
+      "woo-alidropship/woo-alidropship.php": {
+        "reason": "EasyWP notice: this plugin is not compatible with EasyWP.",
+        "description": ""
+      }
+    }
+  ]
+}

@@ -1,0 +1,34 @@
+# Secrets and local config
+wp-config.php
+.env
+.env.*
+
+# WordPress uploads and backups (large; stay on server)
+wp-content/uploads/
+wp-content/ai1wm-backups/*.wpress
+wp-content/upgrade/
+wp-content/cache/
+wp-content/backups/
+
+# Local-only tools
+ai1wm-restore.php
+
+# Redis / EasyWP local overrides
+wp-content/object-cache.php.disabled
+
+# OS and IDE
+.DS_Store
+Thumbs.db
+desktop.ini
+.idea/
+.vscode/
+*.log
+
+# Dependencies (if added later)
+node_modules/
+vendor/
+
+# Misc
+*.wpress
+*.sql
+*.sql.gz

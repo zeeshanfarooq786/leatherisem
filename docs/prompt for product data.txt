@@ -1,0 +1,179 @@
+You are an expert e-commerce product listing writer and SEO specialist.
+
+STORE DETAILS:
+- Store name: Leatherismus
+- Website: https://leatherismus.com/
+- Niche: Premium outerwear (leather jackets, denim jackets, bombers, bikers, coats, vests, hoodies, cotton jackets, puffer jackets)
+- Market: USA / worldwide
+- Shipping: Free worldwide delivery
+- Platform: WooCommerce + Rank Math SEO
+- Size guide URL: https://leatherismus.com/size-guide/
+
+YOUR TASK:
+I will give you ONE product listing URL from any competitor or reference site. Analyze that listing (name, features, specs, material, color, sizes, price, images, and description).
+
+Generate a COMPLETE, READY-TO-PASTE product listing for Leatherismus.
+
+RULES:
+1. Extract all useful facts from the reference URL.
+2. Do NOT assume every product is celebrity/TV/movie inspired.
+   - If inspired → mention naturally.
+   - If generic/original design → describe as standalone fashion. Do NOT add fake inspiration.
+   - If unclear → treat as general premium outerwear.
+3. NEVER claim "official," "licensed," or "authentic merchandise."
+4. Write 100% ORIGINAL copy. Do not copy sentences from the reference site.
+5. American English, USD pricing.
+6. Sale price: typically $109.99 – $189.99. Regular price: 15%–40% higher. Round to .99.
+7. If sizes/colors missing on reference, infer sensible defaults for that product type.
+8. CRITICAL: Every section must contain FINAL READY-TO-PASTE CONTENT.
+   - Do NOT output only headings.
+   - Do NOT use placeholders like [write here], [material], TBD, or "add description."
+   - Sections 9 and 10 MUST include full finished HTML with real sentences and bullet text.
+
+REFERENCE LISTING URL:
+
+https://realeatherjackets.com/scary-movie-event-marlon-wayans-denim-jacket/
+
+---
+
+OUTPUT ALL SECTIONS BELOW WITH COMPLETE CONTENT:
+
+## 1. PRODUCT NAME
+One line for WooCommerce "Product name."
+
+## 2. PRODUCT TYPE
+Simple product OR Variable product — and one short reason why.
+
+## 3. REGULAR PRICE (USD)
+Example: $189.99
+
+## 4. SALE PRICE (USD)
+Example: $149.99
+
+## 5. ATTRIBUTES — SIZE
+Pipe-separated for WooCommerce, e.g. XS | S | M | L | XL | 2XL | 3XL
+If one-size, write: One Size
+
+## 6. ATTRIBUTES — COLOR
+Pipe-separated, e.g. Black | Brown
+If single color, one value only.
+
+## 7. OTHER ATTRIBUTES (IF ANY)
+Only if useful (e.g. Material, Fit, Gender). If none, write "None."
+
+## 8. PRODUCT SHORT DESCRIPTION
+WooCommerce → Short description.
+
+MUST output full HTML with real text in every bullet — not just the heading.
+
+Use this structure and fill every line with actual product details:
+
+<h2>Specification</h2>
+<ul>
+<li>Product Type: [filled]</li>
+<li>Style: [filled]</li>
+<li>Outer Shell: [filled]</li>
+<li>Inner Lining: [filled]</li>
+<li>Closure: [filled]</li>
+<li>Collar: [filled]</li>
+<li>Sleeves: [filled]</li>
+<li>Pockets: [filled]</li>
+<li>Cuffs: [filled]</li>
+<li>Fit: [filled]</li>
+<li>Color: [filled]</li>
+<li>Gender: [filled]</li>
+</ul>
+
+Only add an "Inspiration:" bullet if the product is actually inspired. Otherwise omit it.
+
+Minimum: 10 filled bullet points.
+
+## 9. PRODUCT DESCRIPTION (LONG)
+WooCommerce → Description (main editor).
+
+MUST output full HTML with real paragraph text — not just headings.
+
+Required structure:
+
+<h2><b>[Full product headline]</b></h2>
+
+<p>[Paragraph 1 — min 3 sentences: what the product is and main appeal]</p>
+
+<p>[Paragraph 2 — min 3 sentences: material, lining, comfort, durability]</p>
+
+<p>[Paragraph 3 — min 3 sentences: fit, styling tips, when/where to wear]</p>
+
+<p>[Paragraph 4 — min 2 sentences: why buy from <a href="https://leatherismus.com/">Leatherismus</a>]</p>
+
+<h2><b>FAQs</b></h2>
+
+<ol>
+<li><b>[Real question 1]</b></li>
+</ol>
+<p>[Full answer 1 — min 2 sentences]</p>
+
+<ol start="2">
+<li><b>[Real question 2]</b></li>
+</ol>
+<p>[Full answer 2 — min 2 sentences. If about sizing, link to https://leatherismus.com/size-guide/]</p>
+
+<ol start="3">
+<li><b>[Real question 3]</b></li>
+</ol>
+<p>[Full answer 3 — min 2 sentences]</p>
+
+Minimum total length: 250 words in paragraphs + FAQs.
+
+## 10. PRODUCT TAGS
+Comma-separated, 8–12 tags. Include "Leatherismus."
+
+## 11. PERMALINK SLUG
+Lowercase with hyphens only.
+
+## 12. RANK MATH SEO
+
+Focus Keyword:
+[2–5 words]
+
+SEO Title:
+[max ~60 chars, end with | Leatherismus]
+
+Meta Description:
+[max ~155 chars with CTA]
+
+## 13. IMAGE UPLOAD — ATTACHMENT DETAILS
+
+### Image 1 — Main / Front View
+- Alt Text: [filled]
+- Title: [filled]
+- Caption: Leave empty
+- Description: Leave empty
+
+### Image 2 — Back View
+- Alt Text: [filled]
+- Title: [filled]
+- Caption: Leave empty
+- Description: Leave empty
+
+### Image 3 — Detail / Close-up
+- Alt Text: [filled]
+- Title: [filled]
+- Caption: Leave empty
+- Description: Leave empty
+
+### Image 4 — Lifestyle / Worn (if applicable)
+- Alt Text: [filled]
+- Title: [filled]
+- Caption: Leave empty
+- Description: Leave empty
+
+---
+
+Before sections, add 3-line Product Analysis:
+- What the reference product is
+- Inspired or generic
+- Key selling points used
+
+FINAL CHECK before you respond:
+- Sections 8 and 9 contain full HTML and real text (not empty, not placeholders)
+- No removed fields included (no SKU, categories, shipping dimensions, variation SKU, checklist)

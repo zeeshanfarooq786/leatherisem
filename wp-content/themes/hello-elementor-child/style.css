@@ -1,0 +1,67 @@
+/* 
+Theme Name: Hello Elementor Child
+Theme URI: https://github.com/elementor/hello-theme/
+Description: Hello Elementor Child is a child theme of Hello Elementor, created by Elementor team
+Author: Elementor Team
+Author URI: https://elementor.com/
+Template: hello-elementor
+Version: 1.0.1
+Text Domain: hello-elementor-child
+License: GNU General Public License v3 or later.
+License URI: https://www.gnu.org/licenses/gpl-3.0.html
+Tags: flexible-header, custom-colors, custom-menu, custom-logo, editor-style, featured-images, rtl-language-support, threaded-comments, translation-ready
+*/
+
+/*
+    Add your custom styles here
+*/
+a {
+	color: #E8A80A;
+}
+.woocommerce span.onsale {
+    background-color: #E8A80A;
+    color: #fff;
+}
+[type=button], [type=submit], button, .woocommerce-message .button {
+    color: #333 !important;
+	font-family: "Poppins", Sans-serif !important;
+    font-size: 14px !important;
+    font-weight: 600 !important;
+    background-color: #fff !important;
+    border: 1px solid #E8A80A !important;
+}
+[type=button]:hover, [type=submit]:hover, button:hover, .woocommerce-message .button:hover {
+    color: #E8A80A !important;
+    background-color: #fff !important;
+    border: 1px solid #333 !important;
+}
+.woocommerce-Tabs-panel .star-rating {
+    color: #E8A80A;
+}
+.woocommerce-message::before, .woocommerce-info::before {
+    color: #E8A80A;
+}
+.woocommerce-message, .woocommerce-info {
+    border-top-color: #E8A80A;
+}
+.men-size,.women-size {
+	display:none
+}
+.product_cat-women-jackets .women-size {
+	display: block;
+}
+.product_cat-men-jackets .men-size {
+	display: block;
+}
+.home .read-more-show {
+	display: none;
+}
+.elementor-editor-active .read-more-show {
+	display: flex;
+}
+.read-more-btn .elementor-button {
+	cursor: pointer;
+}
+.woocommerce-Tabs-panel h2 {
+	display: none;
+}
