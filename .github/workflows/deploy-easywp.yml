@@ -54,3 +54,4 @@ jobs:
             --exclude=ai1wm-restore.php
             --exclude=deploy.tar.gz
             --exclude=object-cache.php.disabled
+            --exclude=docs/credentials.txt

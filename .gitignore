@@ -13,6 +13,9 @@ wp-content/backups/
 # Local-only tools
 ai1wm-restore.php
 
+# Never commit credentials
+docs/credentials.txt
+
 # Redis / EasyWP local overrides
 wp-content/object-cache.php.disabled
 
