@@ -30,25 +30,38 @@ jobs:
           fi
           echo "All required SFTP secrets are set."
 
-      - name: Deploy to Namecheap EasyWP (SFTP)
-        uses: SamKirkland/FTP-Deploy-Action@v4.3.5
+      - name: Create deploy archive
+        run: |
+          tar --exclude='.git' \
+              --exclude='.github' \
+              --exclude='wp-config.php' \
+              --exclude='wp-config-sample.php' \
+              --exclude='wp-content/uploads' \
+              --exclude='wp-content/ai1wm-backups' \
+              --exclude='wp-content/mu-plugins' \
+              --exclude='*.wpress' \
+              --exclude='ai1wm-restore.php' \
+              --exclude='object-cache.php.disabled' \
+              -czf /tmp/deploy.tar.gz -C "$GITHUB_WORKSPACE" .
+
+      - name: Upload archive via SCP
+        uses: appleboy/scp-action@v0.1.7
         with:
-          server: ${{ secrets.SFTP_SERVER }}
+          host: ${{ secrets.SFTP_SERVER }}
           username: ${{ secrets.SFTP_USERNAME }}
           password: ${{ secrets.SFTP_PASSWORD }}
-          port: "22"
-          protocol: sftp
-          local-dir: ./
-          server-dir: /wptbox/
-          log-level: verbose
-          exclude: |
-            **/.git*
-            **/.github/**
-            **/wp-config.php
-            **/wp-config-sample.php
-            **/wp-content/uploads/**
-            **/wp-content/ai1wm-backups/**
-            **/wp-content/mu-plugins/**
-            **/*.wpress
-            ai1wm-restore.php
-            **/object-cache.php.disabled
+          port: 22
+          source: /tmp/deploy.tar.gz
+          target: /wptbox/
+
+      - name: Extract archive on server
+        uses: appleboy/ssh-action@v1.2.0
+        with:
+          host: ${{ secrets.SFTP_SERVER }}
+          username: ${{ secrets.SFTP_USERNAME }}
+          password: ${{ secrets.SFTP_PASSWORD }}
+          port: 22
+          script: |
+            cd /wptbox
+            tar -xzf deploy.tar.gz
+            rm -f deploy.tar.gz
