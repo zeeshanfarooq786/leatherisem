@@ -58,14 +58,17 @@ jobs:
           fi
 
       - name: Upload archive via SCP
-        uses: appleboy/scp-action@v0.1.7
-        with:
-          host: ${{ secrets.SFTP_SERVER }}
-          username: ${{ secrets.SFTP_USERNAME }}
-          password: ${{ secrets.SFTP_PASSWORD }}
-          port: 22
-          source: deploy.tar.gz
-          target: /wptbox/
+        env:
+          SSHPASS: ${{ secrets.SFTP_PASSWORD }}
+          SFTP_SERVER: ${{ secrets.SFTP_SERVER }}
+          SFTP_USERNAME: ${{ secrets.SFTP_USERNAME }}
+        run: |
+          sudo apt-get update && sudo apt-get install -y sshpass openssh-client
+          mkdir -p ~/.ssh
+          ssh-keyscan -p 22 -H "$SFTP_SERVER" >> ~/.ssh/known_hosts 2>/dev/null
+          sshpass -e scp -P 22 -o StrictHostKeyChecking=no \
+            "$GITHUB_WORKSPACE/deploy.tar.gz" \
+            "$SFTP_USERNAME@$SFTP_SERVER:deploy.tar.gz"
 
       - name: Extract archive on server
         uses: appleboy/ssh-action@v1.2.0
@@ -74,7 +77,9 @@ jobs:
           username: ${{ secrets.SFTP_USERNAME }}
           password: ${{ secrets.SFTP_PASSWORD }}
           port: 22
+          command_timeout: 30m
           script: |
-            cd /wptbox
+            pwd
+            ls -lh deploy.tar.gz
             tar -xzf deploy.tar.gz
             rm -f deploy.tar.gz
