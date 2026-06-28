@@ -9,7 +9,7 @@ on:
 jobs:
   deploy:
     runs-on: ubuntu-latest
-    timeout-minutes: 30
+    timeout-minutes: 60
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
@@ -31,55 +31,26 @@ jobs:
           echo "All required SFTP secrets are set."
           echo "SFTP_SERVER length: ${#SFTP_SERVER} characters"
 
-      - name: Create deploy archive
-        run: |
-          tar --exclude='.git' \
-              --exclude='.github' \
-              --exclude='deploy.tar.gz' \
-              --exclude='wp-config.php' \
-              --exclude='wp-config-sample.php' \
-              --exclude='wp-content/uploads' \
-              --exclude='wp-content/ai1wm-backups' \
-              --exclude='wp-content/mu-plugins' \
-              --exclude='*.wpress' \
-              --exclude='ai1wm-restore.php' \
-              --exclude='object-cache.php.disabled' \
-              -czf /tmp/deploy.tar.gz -C "$GITHUB_WORKSPACE" .
-          cp /tmp/deploy.tar.gz "$GITHUB_WORKSPACE/deploy.tar.gz"
-          ls -lh "$GITHUB_WORKSPACE/deploy.tar.gz"
-
-      - name: Verify deploy archive size
-        run: |
-          SIZE=$(stat -c%s "$GITHUB_WORKSPACE/deploy.tar.gz")
-          echo "Archive size: $SIZE bytes"
-          if [ "$SIZE" -lt 1000000 ]; then
-            echo "::error::Deploy archive is too small. Expected at least 1 MB."
-            exit 1
-          fi
-
-      - name: Upload archive via SCP
-        env:
-          SSHPASS: ${{ secrets.SFTP_PASSWORD }}
-          SFTP_SERVER: ${{ secrets.SFTP_SERVER }}
-          SFTP_USERNAME: ${{ secrets.SFTP_USERNAME }}
-        run: |
-          sudo apt-get update && sudo apt-get install -y sshpass openssh-client
-          mkdir -p ~/.ssh
-          ssh-keyscan -p 22 -H "$SFTP_SERVER" >> ~/.ssh/known_hosts 2>/dev/null
-          sshpass -e scp -P 22 -o StrictHostKeyChecking=no \
-            "$GITHUB_WORKSPACE/deploy.tar.gz" \
-            "$SFTP_USERNAME@$SFTP_SERVER:deploy.tar.gz"
-
-      - name: Extract archive on server
-        uses: appleboy/ssh-action@v1.2.0
+      - name: Deploy to EasyWP via SFTP
+        uses: wlixcc/SFTP-Deploy-Action@v1.2.6
         with:
-          host: ${{ secrets.SFTP_SERVER }}
+          server: ${{ secrets.SFTP_SERVER }}
           username: ${{ secrets.SFTP_USERNAME }}
           password: ${{ secrets.SFTP_PASSWORD }}
           port: 22
-          command_timeout: 30m
-          script: |
-            pwd
-            ls -lh deploy.tar.gz
-            tar -xzf deploy.tar.gz
-            rm -f deploy.tar.gz
+          local_path: ./
+          remote_path: /
+          sftp_only: true
+          sftpArgs: -o ConnectTimeout=30
+          rsyncArgs: >-
+            --exclude=.git
+            --exclude=.github
+            --exclude=wp-config.php
+            --exclude=wp-config-sample.php
+            --exclude=wp-content/uploads
+            --exclude=wp-content/ai1wm-backups
+            --exclude=wp-content/mu-plugins
+            --exclude=*.wpress
+            --exclude=ai1wm-restore.php
+            --exclude=deploy.tar.gz
+            --exclude=object-cache.php.disabled
