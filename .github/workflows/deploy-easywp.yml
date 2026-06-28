@@ -29,6 +29,7 @@ jobs:
             exit 1
           fi
           echo "All required SFTP secrets are set."
+          echo "SFTP_SERVER length: ${#SFTP_SERVER} characters"
 
       - name: Create deploy archive
         run: |
@@ -43,6 +44,16 @@ jobs:
               --exclude='ai1wm-restore.php' \
               --exclude='object-cache.php.disabled' \
               -czf /tmp/deploy.tar.gz -C "$GITHUB_WORKSPACE" .
+          ls -lh /tmp/deploy.tar.gz
+
+      - name: Verify deploy archive size
+        run: |
+          SIZE=$(stat -c%s /tmp/deploy.tar.gz)
+          echo "Archive size: $SIZE bytes"
+          if [ "$SIZE" -lt 1000000 ]; then
+            echo "::error::Deploy archive is too small. Expected at least 1 MB."
+            exit 1
+          fi
 
       - name: Upload archive via SCP
         uses: appleboy/scp-action@v0.1.7
