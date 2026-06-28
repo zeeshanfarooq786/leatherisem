@@ -44,7 +44,8 @@ jobs:
               --exclude='*.wpress' \
               --exclude='ai1wm-restore.php' \
               --exclude='object-cache.php.disabled' \
-              -czf "$GITHUB_WORKSPACE/deploy.tar.gz" -C "$GITHUB_WORKSPACE" .
+              -czf /tmp/deploy.tar.gz -C "$GITHUB_WORKSPACE" .
+          cp /tmp/deploy.tar.gz "$GITHUB_WORKSPACE/deploy.tar.gz"
           ls -lh "$GITHUB_WORKSPACE/deploy.tar.gz"
 
       - name: Verify deploy archive size
