@@ -12,6 +12,7 @@ wp-content/backups/
 
 # Local-only tools
 ai1wm-restore.php
+wp-content/mu-plugins/local-dev-performance.php
 
 # Never commit credentials
 docs/credentials.txt

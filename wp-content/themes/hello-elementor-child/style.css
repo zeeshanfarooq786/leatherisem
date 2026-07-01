@@ -65,3 +65,58 @@ a {
 .woocommerce-Tabs-panel h2 {
 	display: none;
 }
+
+/* Size dropdown — compact row with quantity + add to cart (avoid Elementor .variations styles) */
+.elementor-add-to-cart form.cart {
+	display: flex !important;
+	flex-wrap: wrap;
+	align-items: center;
+	gap: 12px;
+}
+
+.elementor-add-to-cart form.cart .leatherismus-size-field {
+	display: inline-flex;
+	align-items: center;
+	gap: 10px;
+	flex: 0 0 auto;
+	width: auto;
+	margin: 0;
+	padding: 0;
+	background: none;
+}
+
+.elementor-add-to-cart form.cart .leatherismus-size-label {
+	margin: 0;
+	font-family: "Poppins", Sans-serif;
+	font-size: 14px;
+	font-weight: 600;
+	color: #535353;
+	white-space: nowrap;
+}
+
+.elementor-add-to-cart form.cart .leatherismus-size-select {
+	width: 120px !important;
+	max-width: 120px !important;
+	min-width: 0 !important;
+	height: 44px;
+	margin: 0;
+	padding: 8px 10px;
+	font-family: "Poppins", Sans-serif;
+	font-size: 14px;
+	font-weight: 400;
+	color: #303030;
+	background: #fff;
+	border: 1px solid #C5C5C5;
+	border-radius: 0;
+	box-sizing: border-box;
+}
+
+.elementor-add-to-cart form.cart .quantity {
+	flex: 0 0 auto;
+	margin: 0;
+}
+
+.elementor-add-to-cart form.cart .single_add_to_cart_button {
+	flex: 0 0 auto;
+	margin: 0;
+}
